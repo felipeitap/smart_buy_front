@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.default-input {
+  background-color: rgba(217, 209, 199, 0.25);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.default-button {
+  background-color: #2f3540;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
