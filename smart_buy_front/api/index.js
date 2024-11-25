@@ -1,5 +1,5 @@
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { emitToast } from "@/app/_utils";
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,16 +25,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error(error.response.data.error);
-    toast.error(error.response.data.error, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
+    emitToast("error", error.response.data.error)
     return Promise.reject(error);
   }
 );

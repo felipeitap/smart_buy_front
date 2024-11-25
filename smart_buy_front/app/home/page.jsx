@@ -1,3 +1,11 @@
-export default function Home(){
-    return <h1>TESTE DE LOGIN</h1>
+"use client"
+
+import { redirect } from "next/navigation";
+
+export default function Home() {
+  if (!localStorage.getItem("token")){
+    redirect("/")
+  };
+
+  return <h1>HOME</h1>;
 }
