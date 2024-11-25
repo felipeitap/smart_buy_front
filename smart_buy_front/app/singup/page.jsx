@@ -41,7 +41,7 @@ export default function Signup() {
     type: yup
       .string()
       .oneOf(
-        ["microempreendedor", "fornecedor"],
+        ["cliente", "fornecedor"],
         "Tipo deve ser Microempreendedor ou Fornecedor"
       )
       .required("Tipo é obrigatório"),
@@ -179,9 +179,9 @@ export default function Signup() {
             <select
               className="default-input"
               {...register("type", { required: true })}
-              value={"microempreendedor"}
+              value={"cliente"}
             >
-              <option value="microempreendedor">Microempreendedor</option>
+              <option value="cliente">Microempreendedor</option>
               <option value="fornecedor">Fornecedor</option>
             </select>
           </div>

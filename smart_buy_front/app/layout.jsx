@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import Sidebar from "./components/sidebar";
 
 export default function RootLayout({ children }) {
-  const publicRoutes = ["/", "singup"];
+  const publicRoutes = ["/", "/singup"];
   const path = usePathname();
   const isPublicRoute = publicRoutes.includes(path);
 
