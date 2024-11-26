@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { login } from "./actions/auth";
+import { login } from "./_actions/auth";
 import { useEffect } from "react";
 import * as yup from "yup";
 

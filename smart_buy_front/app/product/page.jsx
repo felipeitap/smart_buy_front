@@ -3,11 +3,10 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { getProducts, newProduct } from "../actions/product";
-import { useEffect } from "react";
-import { useProducts } from "../hooks/useProduct";
-import DataTable from "../components/dataTable";
-import Spinner from "../components/spinner";
+import { newProduct } from "../_actions/product";
+import { useProducts } from "../_hooks/useProduct";
+import DataTable from "../_components/dataTable";
+import Spinner from "../_components/spinner";
 
 export default function Product() {
   if (!localStorage.getItem("token")) {
@@ -24,8 +23,8 @@ export default function Product() {
 
   const schema = yup.object({
     name: yup.string().required("Nome do produto é obrigatório"),
-    category: yup.string().required("Categoria do produot é obrigatório"),
-    description: yup.string().required("Descrição do produot é obrigatório"),
+    category: yup.string().required("Categoria do produto é obrigatório"),
+    description: yup.string().required("Descrição do produto é obrigatório"),
   });
   const {
     register,

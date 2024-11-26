@@ -4,14 +4,12 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import Sidebar from "./components/sidebar";
+import Sidebar from "./_components/sidebar";
 
 export default function RootLayout({ children }) {
   const publicRoutes = ["/", "/singup"];
   const path = usePathname();
   const isPublicRoute = publicRoutes.includes(path);
-
-  const isMobile = window.innerWidth < 1024;
 
   return (
     <html lang="pt-br">
@@ -26,7 +24,7 @@ export default function RootLayout({ children }) {
         ) : (
           <div>
             <Sidebar />
-            <div className={`${!isMobile && "ml-[90px] p-12"}`}>{children}</div>
+            <div className="lg:ml-[90px] lg:p-12">{children}</div>
           </div>
         )}
         <ToastContainer />

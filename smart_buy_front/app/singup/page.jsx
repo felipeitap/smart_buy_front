@@ -4,13 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signUp } from "../actions/auth";
+import { signUp } from "../_actions/auth";
 import { useEffect, useState } from "react";
 import { handlePhoneChange, handleCnpjChange } from "../_utils";
 import * as yup from "yup";
 
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "../components/modal";
+import Modal from "../_components/modal";
 import { redirect } from "next/navigation";
 
 export default function Signup() {

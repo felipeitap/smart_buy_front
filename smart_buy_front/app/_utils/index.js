@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export const handlePhoneChange = (event) => {
   let value = event.target.value.replace(/\D/g, "");
@@ -15,7 +15,7 @@ export const handlePhoneChange = (event) => {
 };
 
 export const handleCnpjChange = (event) => {
-  let value = event.target.value.replace(/\D/g, ""); 
+  let value = event.target.value.replace(/\D/g, "");
 
   if (value.length > 12) {
     value = value.replace(
@@ -33,16 +33,35 @@ export const handleCnpjChange = (event) => {
   return value;
 };
 
-
 export const emitToast = (type, message) => {
-    toast[type](message, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
-}
+  toast[type](message, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+};
+
+export const formatDate = (date) => {
+  const newDate = new Date(date);
+  const localDate = newDate.toLocaleDateString("pt-BR");
+
+  return localDate;
+};
+
+export const handleStatus = (status) => {
+  switch (status) {
+    case "pendente":
+      return <span className="text-amber-600">{status}</span>;
+    case "concluido":
+      return <span className="text-green-600">{status}</span>;
+    case "cancelado":
+      return <span className="text-red-600">{status}</span>;
+    default:
+      return status;
+  }
+};
