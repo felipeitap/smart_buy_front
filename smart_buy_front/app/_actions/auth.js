@@ -2,7 +2,7 @@ import api from "@/api";
 import { redirect } from "next/navigation";
 import { emitToast } from "../_utils";
 
-export async function login(data) {
+export async function login(data, setLoading) {
   let token;
   try {
     const response = await api.post("/login", data);
@@ -10,6 +10,7 @@ export async function login(data) {
     localStorage.setItem("token", token);
   } catch (error) {
     emitToast("error", error);
+    setLoading(false)
   }
 
   if (token) {
@@ -28,5 +29,5 @@ export async function signUp(data) {
 
 export function logout() {
   localStorage.removeItem("token");
-  redirect("/home");
+  redirect("/");
 }

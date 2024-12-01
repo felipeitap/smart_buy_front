@@ -8,8 +8,6 @@ export default async function consultCNPJ(cnpj) {
     url: url,
     dataType: "jsonp",
     success: function (data) {
-      console.log(data);
-
       companySituation = data.situacao;
     },
     error: function (xhr, status, error) {
