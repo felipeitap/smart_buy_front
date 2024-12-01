@@ -5,12 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useProducts } from "../_hooks/useProduct";
 import { newAlert } from "../_actions/alerts";
+import { useEffect } from "react";
 
 export default function NewAlert() {
-  if (!localStorage.getItem("token")) {
-    redirect("/");
-  }
-
   const { products } = useProducts();
 
   const today = new Date().toISOString().slice(0, 10);
@@ -38,6 +35,12 @@ export default function NewAlert() {
     await newAlert(data);
     reset();
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      redirect("/");
+    }
+  }, []);
 
   return (
     <div className="p-10">

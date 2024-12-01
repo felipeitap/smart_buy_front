@@ -10,10 +10,6 @@ import { io } from "socket.io-client";
 import { emitToast } from "../_utils";
 
 export default function Home() {
-  if (!localStorage.getItem("token")) {
-    redirect("/");
-  }
-
   const { alerts, loading, refreshAlerts } = useAlerts();
   const { userType, userId } = useAuth();
 
@@ -21,6 +17,10 @@ export default function Home() {
   const alertsToRender = userType === "cliente" ? alerts : filteredAlerts;
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      redirect("/");
+    }
+
     const socket = io("http://192.168.1.7:3001");
 
     if (userType === "fornecedor") {

@@ -18,10 +18,6 @@ import { emitToast } from "../_utils";
 import api from "@/api";
 
 export default function Product() {
-  if (!localStorage.getItem("token")) {
-    redirect("/");
-  }
-
   const [selectedProduct, setSelectedProduct] = useState({});
   const [openEditModal, setOpenEditModal] = useState();
   const [openDeleteModal, setOpenDeleteModal] = useState();
@@ -73,6 +69,12 @@ export default function Product() {
   useEffect(() => {
     refreshProducts();
   }, [openEditModal, openDeleteModal]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      redirect("/");
+    }
+  }, []);
 
   const submit = async (data) => {
     await newProduct(data);

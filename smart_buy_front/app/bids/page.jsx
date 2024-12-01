@@ -7,13 +7,16 @@ import { formatDate, handleStatus } from "../_utils";
 import Spinner from "../_components/spinner";
 import { useAuth } from "../_hooks/useAuth";
 import { useBids } from "../_hooks/useBids";
+import { useEffect } from "react";
 
 export default function Home() {
-  if (!localStorage.getItem("token")) {
-    redirect("/");
-  }
-
   const { bids, loading } = useBids();
+
+  useEffect(() =>{
+    if (!localStorage.getItem("token")) {
+      redirect("/");
+    }
+  },[])
 
   const handleClick = (id, phone) => {
     redirect(`/alerts/${id}?is_winner=true&phone=${phone}`);

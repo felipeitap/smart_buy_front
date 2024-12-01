@@ -9,13 +9,17 @@ import { FaPlus } from "react-icons/fa6";
 import { FaList } from "react-icons/fa";
 import { logout } from "../_actions/auth";
 import { useAuth } from "../_hooks/useAuth";
+import { useEffect } from "react";
 
 export default function Sidebar() {
   const { userType } = useAuth();
 
-  if (!localStorage.getItem("token")) {
-    return null;
-  }
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      return null;
+    }
+  
+  }, [])
 
   return (
     <div className="fixed items-center shadow-2xl bottom-0 w-full bg-[#c6ccd9] lg:left-0 lg:h-full lg:w-auto lg:flex flex-col ">
