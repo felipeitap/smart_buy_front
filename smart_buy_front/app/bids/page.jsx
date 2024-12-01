@@ -30,7 +30,7 @@ export default function Home() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col items-center gap-20 md:flex-row md:justify-center lg:flex-wrap lg:justify-start">
+        <div className="flex flex-col items-center gap-20 md:flex-row md:justify-center lg:flex-wrap lg:justify-start mb-28">
           {bids.length > 0 ? (
             bids?.map((bid, index) => (
               <AlertCard

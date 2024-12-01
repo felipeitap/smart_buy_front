@@ -7,7 +7,12 @@ import api from "@/api";
 import ProposalCard from "@/app/_components/proposalCard";
 import { FaWhatsapp } from "react-icons/fa";
 import { useAlerts } from "@/app/_hooks/useAlerts";
-import { emitToast, formatDate, generateWhatsAppLink, handleStatus } from "@/app/_utils";
+import {
+  emitToast,
+  formatDate,
+  generateWhatsAppLink,
+  handleStatus,
+} from "@/app/_utils";
 import { useAuth } from "@/app/_hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,7 +30,7 @@ export default function Alert({ params }) {
 
   const query = useSearchParams();
   const isWinner = query.get("is_winner");
-  const phone = query.get("phone")
+  const phone = query.get("phone");
 
   const { alert, loading, refreshAlerts } = useAlerts(id);
   const { bids, loadingBids, refreshBids } = useBids(id);
@@ -147,51 +152,53 @@ export default function Alert({ params }) {
                 </div>
               </Card>
             ) : (
-              <Card style={"md:w-2/5"}>
-                <h2 className="text-lg font-bold mb-2">Criar proposta</h2>
+              !disabled && (
+                <Card style={"md:w-2/5"}>
+                  <h2 className="text-lg font-bold mb-2">Criar proposta</h2>
 
-                <form
-                  onSubmit={handleSubmit(submit)}
-                  className="flex flex-col gap-8"
-                >
-                  <div className="input-group">
-                    <label htmlFor="value">Valor*</label>
-                    <input
-                      disabled={disabled}
-                      type="text"
-                      {...register("value", { required: true })}
-                      className="default-input"
-                    />
-                  </div>
-                  {errors.value && (
-                    <small className="text-red-600">
-                      {errors.value.message}
-                    </small>
-                  )}
-                  <div className="input-group">
-                    <label htmlFor="delivery">Prazo para entrega*</label>
-                    <input
-                      disabled={disabled}
-                      min={today}
-                      max={minDate}
-                      type="date"
-                      {...register("delivery", { required: true })}
-                      className="default-input"
-                    />
-                  </div>
-                  {errors.delivery && (
-                    <small className="text-red-600">
-                      {errors.delivery.message}
-                    </small>
-                  )}
-                  <button
-                    disabled={disabled}
-                    className={`self-end ${disabled && "bg-[#ab834b1a]"}`}
+                  <form
+                    onSubmit={handleSubmit(submit)}
+                    className="flex flex-col gap-8"
                   >
-                    Enviar
-                  </button>
-                </form>
-              </Card>
+                    <div className="input-group">
+                      <label htmlFor="value">Valor*</label>
+                      <input
+                        disabled={disabled}
+                        type="text"
+                        {...register("value", { required: true })}
+                        className="default-input"
+                      />
+                    </div>
+                    {errors.value && (
+                      <small className="text-red-600">
+                        {errors.value.message}
+                      </small>
+                    )}
+                    <div className="input-group">
+                      <label htmlFor="delivery">Prazo para entrega*</label>
+                      <input
+                        disabled={disabled}
+                        min={today}
+                        max={minDate}
+                        type="date"
+                        {...register("delivery", { required: true })}
+                        className="default-input"
+                      />
+                    </div>
+                    {errors.delivery && (
+                      <small className="text-red-600">
+                        {errors.delivery.message}
+                      </small>
+                    )}
+                    <button
+                      disabled={disabled}
+                      className={`self-end ${disabled && "bg-[#ab834b1a]"}`}
+                    >
+                      Enviar
+                    </button>
+                  </form>
+                </Card>
+              )
             )}
           </div>
           <div className="p-8">
@@ -210,7 +217,11 @@ export default function Alert({ params }) {
                     <a
                       className="lg:self-center lg:w-2/4"
                       target="_blank"
-                      href={generateWhatsAppLink(phone,alert.product_name, formatDate(alert.negotiation_deadline))}
+                      href={generateWhatsAppLink(
+                        phone,
+                        alert.product_name,
+                        formatDate(alert.negotiation_deadline)
+                      )}
                     >
                       <button className="bg-green-600 py-5 w-full">
                         <span className="flex justify-center items-center gap-2">
@@ -222,8 +233,7 @@ export default function Alert({ params }) {
                   </div>
                 ) : (
                   <h2 className="text-center text-2xl font-bold">
-                    Aguarde o contato do fornecedor vencedor para finalizar a
-                    negociação
+                    Sua proposta foi enviada com sucesso!
                   </h2>
                 )}
               </Card>
