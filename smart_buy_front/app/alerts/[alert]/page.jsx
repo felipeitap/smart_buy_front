@@ -104,7 +104,7 @@ export default function Alert({ params }) {
         <Spinner />
       ) : (
         <>
-          <div className="flex flex-col justify-center p-8 md:flex-row md:justify-between lg:p-0">
+          <div className="flex flex-col justify-center p-8 lg:flex-row lg:justify-between lg:p-0">
             <Card style={"lg:w-2/5"}>
               <h2 className="text-lg font-bold mb-2">{alert.product_name}</h2>
               <ul>

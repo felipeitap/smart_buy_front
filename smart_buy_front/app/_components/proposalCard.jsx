@@ -28,8 +28,8 @@ export default function ProposalCard({
             >
               <Image
                 src={"/cancel_icon.svg"}
-                height={30}
-                width={30}
+                height={35}
+                width={35}
                 alt="Icone de cancelar"
               />
             </button>
@@ -41,8 +41,8 @@ export default function ProposalCard({
             >
               <Image
                 src={"/accept_icon.svg"}
-                height={30}
-                width={30}
+                height={35}
+                width={35}
                 alt="Icone de aceitar"
               />
             </button>
