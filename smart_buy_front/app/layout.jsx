@@ -1,16 +1,16 @@
 "use client";
 
-import "./globals.css";
-import { ToastContainer } from "react-toastify";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import Sidebar from "./_components/sidebar";
+import { ToastContainer } from "react-toastify";
+import { usePathname } from "next/navigation";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   const publicRoutes = ["/", "/singup"];
   const path = usePathname();
   const isPublicRoute = publicRoutes.includes(path);
-
+  
   return (
     <html lang="pt-br">
       <body>
