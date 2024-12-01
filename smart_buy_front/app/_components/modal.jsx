@@ -16,9 +16,14 @@ export default function Modal({
           {modalTitle}
         </div>
         <div className="p-6">{children}</div>
-        <button onClick={onClose} className="transition duration-300 m-4 self-end">
-          {closeMessage}
-        </button>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="transition duration-300 m-4 self-end"
+          >
+            {closeMessage}
+          </button>
+        )}
       </div>
     </div>
   );
