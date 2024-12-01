@@ -17,11 +17,7 @@ export default function Home() {
   const alertsToRender = userType === "cliente" ? alerts : filteredAlerts;
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      redirect("/");
-    }
-
-    const socket = io("https://smartbuy-api.onrender.com/v1");
+    const socket = io("https://smartbuy-api.onrender.com");
 
     if (userType === "fornecedor") {
       socket.emit("register_profile", "fornecedor");
@@ -46,6 +42,12 @@ export default function Home() {
   const handleClick = (id) => {
     redirect(`/alerts/${id}`);
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      redirect("/");
+    }
+  }, []);
 
   return (
     <>
