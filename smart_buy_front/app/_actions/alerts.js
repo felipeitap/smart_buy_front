@@ -23,3 +23,14 @@ export async function getAlerts() {
     emitToast("error", error);
   }
 }
+
+export async function getAlert(id) {
+  try {
+    const response = await api.get(`/alert/${id}`);
+    const alert = response.data.data[0];
+
+    return alert;
+  } catch (error) {
+    emitToast("error", error);
+  }
+}
