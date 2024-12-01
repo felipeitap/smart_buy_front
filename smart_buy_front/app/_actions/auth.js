@@ -12,7 +12,9 @@ export async function login(data) {
     emitToast("error", error);
   }
 
-  redirect("/home");
+  if (token) {
+    redirect("/home");
+  }
 }
 
 export async function signUp(data) {
