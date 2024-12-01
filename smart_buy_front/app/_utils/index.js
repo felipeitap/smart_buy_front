@@ -46,9 +46,9 @@ export const emitToast = (type, message) => {
   });
 };
 
-export const formatDate = (date) => {
+export const formatDate = (date, local = "pt-BR") => {
   const newDate = new Date(date);
-  const localDate = newDate.toLocaleDateString("pt-BR");
+  const localDate = newDate.toLocaleDateString(local);
 
   return localDate;
 };
@@ -56,12 +56,17 @@ export const formatDate = (date) => {
 export const handleStatus = (status) => {
   switch (status) {
     case "pendente":
-      return <span className="text-amber-600">{status}</span>;
-    case "concluido":
-      return <span className="text-green-600">{status}</span>;
+      return <span className="text-amber-600 font-bold">{status}</span>;
+    case "concluído":
+      return <span className="text-green-600 font-bold">{status}</span>;
     case "cancelado":
-      return <span className="text-red-600">{status}</span>;
+      return <span className="text-red-600 font-bold">{status}</span>;
     default:
       return status;
   }
+};
+
+export const generateWhatsAppLink = (phone, product, date) => {
+  const link = `https://wa.me/55${phone}?text=Ol%C3%A1%20gostaria%20de%20dar%20proced%C3%AAncia%20a%20nossa%20negocia%C3%A7%C3%A3o%20a%20respeito%20do%20alerta%20criado%20na%20Smart%20Buy%20%0AProduto%3A%20${product}%0AData%20limite%3A%20${date}%20`;
+  return link;
 };
