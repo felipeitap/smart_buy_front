@@ -11,6 +11,7 @@ export default function AlertList({ alerts, handleClick }) {
       <ul>
         <li>Quantidade: {alert.quantity_needed}</li>
         <li>Prazo da negociação: {formatDate(alert.negotiation_deadline)}</li>
+        <li>Quantidade de propostas: {alert.total_bids}</li>
         <li className="capitalize">Status: {handleStatus(alert.status)}</li>
       </ul>
     </AlertCard>
