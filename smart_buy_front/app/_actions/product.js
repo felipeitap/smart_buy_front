@@ -23,3 +23,14 @@ export async function getProducts() {
     emitToast("error", error);
   }
 }
+
+export async function getProduct(id) {
+  try {
+    const response = await api.get(`/product/${id}`);
+    const product = response.data.data[0];
+
+    return product;
+  } catch (error) {
+    emitToast("error", error);
+  }
+}
