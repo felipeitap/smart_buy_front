@@ -21,7 +21,7 @@ export default function Home() {
       redirect("/");
     }
 
-    const socket = io("http://192.168.1.7:3001");
+    const socket = io("https://smartbuy-api.onrender.com/v1");
 
     if (userType === "fornecedor") {
       socket.emit("register_profile", "fornecedor");
