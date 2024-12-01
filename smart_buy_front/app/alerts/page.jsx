@@ -13,9 +13,15 @@ export default function NewAlert() {
 
   const { products } = useProducts();
 
+  const today = new Date().toISOString().slice(0, 10);
+  const filteredProducts = products?.filter((e) => e.active);
+
   const schema = yup.object({
     productId: yup.string().required("Produto é obrigatório"),
-    quantity: yup.string().required("Quantidade do produto é obrigatório"),
+    quantity: yup
+      .number()
+      .typeError("A quantidade deve ser um número")
+      .required("Quantidade do produto é obrigatório"),
     negociation: yup.string().required("Prazo de negociação é obrigatório"),
     description: yup.string().required("Descrição do alerta é obrigatório"),
   });
@@ -46,7 +52,7 @@ export default function NewAlert() {
                 className="default-input"
               >
                 <option value=""></option>
-                {products?.map((product, index) => (
+                {filteredProducts?.map((product, index) => (
                   <option key={index} value={product.product_id}>
                     {product.product_name}
                   </option>
@@ -71,6 +77,7 @@ export default function NewAlert() {
               <label htmlFor="negociation">Prazo da negociação*</label>
               <input
                 type="date"
+                min={today}
                 {...register("negociation", { required: true })}
                 className="default-input"
               />
