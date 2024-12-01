@@ -1,14 +1,18 @@
-"use client"
+"use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoMdHome } from "react-icons/io";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
-import Image from "next/image";
+import { FaList } from "react-icons/fa";
 import { logout } from "../_actions/auth";
-import Link from "next/link";
+import { useAuth } from "../_hooks/useAuth";
 
 export default function Sidebar() {
+  const { userType } = useAuth();
+
   if (!localStorage.getItem("token")) {
     return null;
   }
@@ -23,16 +27,25 @@ export default function Sidebar() {
         alt="Logo Smart Buy"
       />
 
-      <div className="flex justify-around py-4 lg:flex-col lg:p-5 lg:h-full lg:justify-start lg:gap-8 ">
+      <div className="flex justify-around items-center py-4 lg:flex-col lg:p-5 lg:h-full lg:justify-start lg:gap-8 ">
         <Link href={"/home"}>
           <IoMdHome className="cursor-pointer" size={50} />
         </Link>
-        <Link href={"/alerts"}>
-          <FaPlus className="cursor-pointer" size={50} />
-        </Link>
-        <Link href={"/product"}>
-          <AiOutlineProduct className="cursor-pointer" size={50} />
-        </Link>
+
+        {userType === "cliente" ? (
+          <>
+            <Link href={"/product"}>
+              <AiOutlineProduct className="cursor-pointer" size={50} />
+            </Link>
+            <Link href={"/alerts"}>
+              <FaPlus className="cursor-pointer" size={50} />
+            </Link>
+          </>
+        ) : (
+          <Link href={"/bids"}>
+            <FaList size={30} className="cursor-pointer" />
+          </Link>
+        )}
         <RiLogoutBoxLine
           className="cursor-pointer lg:hidden"
           size={50}
