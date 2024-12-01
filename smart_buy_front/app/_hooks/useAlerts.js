@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getAlerts } from "../_actions/alerts";
+import { getAlert, getAlerts } from "../_actions/alerts";
 
-export function useAlerts() {
+export function useAlerts(id) {
   const [alerts, setAlerts] = useState([]);
+  const [alert, setAlert] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -11,9 +12,9 @@ export function useAlerts() {
     const fetchAlerts = async () => {
       try {
         setLoading(true);
-        const productData = await getAlerts();
+        const alertsData = await getAlerts();
 
-        setAlerts(productData);
+        setAlerts(alertsData);
       } catch (err) {
         setError(err);
       } finally {
@@ -21,10 +22,27 @@ export function useAlerts() {
       }
     };
 
-    fetchAlerts();
+    const fetchAlert = async () => {
+      try {
+        setLoading(true);
+        const alertData = await getAlert(id);
+
+        setAlert(alertData);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchAlert();
+    } else {
+      fetchAlerts();
+    }
   }, [refreshKey]);
 
   const refreshAlerts = () => setRefreshKey((prev) => prev + 1);
 
-  return { alerts, loading, error, refreshAlerts };
+  return { alerts, alert, loading, error, refreshAlerts };
 }
